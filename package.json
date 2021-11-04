@@ -1,0 +1,24 @@
+{
+  "name": "myawsome-nodejs-bolerplate",
+  "version": "1.0.0",
+  "description": "Modular Node.js with typescript boilerplate",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo 'hello word'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djibril6/awsome-nodejs-bolerplate.git"
+  },
+  "keywords": [
+    "node.js",
+    "typescript",
+    "boilerplate"
+  ],
+  "author": "Djibril ISSOUFOU MAMAN",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/djibril6/awsome-nodejs-bolerplate/issues"
+  },
+  "homepage": "https://github.com/djibril6/awsome-nodejs-bolerplate#readme"
+}
