@@ -6,14 +6,15 @@ import xss from 'xss-clean';
 import mongoSanitize from 'express-mongo-sanitize';
 import compression from 'compression';
 
-import { config } from './config';
+import { config, logger } from './config';
+import { ENodeEnv } from './types';
 
 const startServer  = async (): Promise<Server> => {
   
     const app = express();
 
     // set security HTTP headers
-    if (config.env === 'production') {
+    if (config.env === ENodeEnv.PROD) {
         app.use(helmet());
     }
 
@@ -41,9 +42,7 @@ const startServer  = async (): Promise<Server> => {
      */
 
     const server = await app.listen(config.port, () => {
-        if (config.env === 'development') {
-            console.log(`🚀 Server listening to port ${config.port}`);
-        }
+        logger.info(`🚀 Server listening to port ${config.port}`);
     });
     return server;
 };
