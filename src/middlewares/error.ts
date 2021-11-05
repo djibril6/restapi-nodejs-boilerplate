@@ -4,6 +4,7 @@ import { ApiError } from '../utils';
 import { NextFunction, Request, Response } from 'express';
 import { ENodeEnv } from 'enums/node-env.enum';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const errorConverter = (err: any, req: Request, res: Response, next: NextFunction) => {
   let error = err;
   if (!(error instanceof ApiError)) {
@@ -16,7 +17,7 @@ const errorConverter = (err: any, req: Request, res: Response, next: NextFunctio
 };
 
 // eslint-disable-next-line no-unused-vars
-const errorHandler = (err: ApiError, req: Request, res: Response, next: NextFunction) => {
+const errorHandler = (err: ApiError, req: Request, res: Response) => {
   let { statusCode, message } = err;
   if (config.env === ENodeEnv.PROD && !err.isOperational) {
     statusCode = httpStatus.INTERNAL_SERVER_ERROR;
