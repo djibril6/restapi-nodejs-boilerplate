@@ -2,6 +2,7 @@ import httpStatus from 'http-status';
 import { config, logger } from '../config';
 import { ApiError } from '../utils';
 import { NextFunction, Request, Response } from 'express';
+import { ENodeEnv } from 'enums/node-env.enum';
 
 const errorConverter = (err: any, req: Request, res: Response, next: NextFunction) => {
   let error = err;
@@ -17,7 +18,7 @@ const errorConverter = (err: any, req: Request, res: Response, next: NextFunctio
 // eslint-disable-next-line no-unused-vars
 const errorHandler = (err: ApiError, req: Request, res: Response, next: NextFunction) => {
   let { statusCode, message } = err;
-  if (config.env === 'production' && !err.isOperational) {
+  if (config.env === ENodeEnv.PROD && !err.isOperational) {
     statusCode = httpStatus.INTERNAL_SERVER_ERROR;
     message = httpStatus[httpStatus.INTERNAL_SERVER_ERROR].toString();
   }
@@ -27,12 +28,10 @@ const errorHandler = (err: ApiError, req: Request, res: Response, next: NextFunc
   const response = {
     code: statusCode,
     message,
-    ...(config.env === 'development' && { stack: err.stack }),
+    ...(config.env === ENodeEnv.DEV && { stack: err.stack }),
   };
 
-  if (config.env === 'development') {
-    logger.error(err);
-  }
+  logger.error(err);
 
   res.status(statusCode).send(response);
 };

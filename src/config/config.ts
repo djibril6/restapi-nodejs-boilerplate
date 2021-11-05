@@ -1,11 +1,12 @@
 import dotenv from 'dotenv';
 import Joi from 'joi';
+import { ENodeEnv } from '../types';
 
 dotenv.config({ path: '.env' });
 
 const envVarsSchema = Joi.object()
   .keys({
-    NODE_ENV: Joi.string().valid('production', 'development', 'test').required(),
+    NODE_ENV: Joi.string().valid(ENodeEnv.PROD, ENodeEnv.DEV, ENodeEnv.TEST).required(),
     PORT: Joi.number().default(4000),
   })
   .unknown();

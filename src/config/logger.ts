@@ -10,27 +10,35 @@ const enumerateErrorFormat = winston.format((info) => {
 });
 
 const logger = winston.createLogger({
-  level: config.env === ENodeEnv.DEV ? 'debug' : 'info',
+  level: 'info',
   format: winston.format.combine(
     enumerateErrorFormat(),
-    config.env === ENodeEnv.DEV ? winston.format.colorize() : winston.format.uncolorize(),
+    winston.format.uncolorize(),
     winston.format.splat(),
     winston.format.timestamp({
       format: 'YYYY-MM-DD HH:mm:ss'
     }),
     winston.format.errors({ stack: true }),
-    config.env === ENodeEnv.DEV 
-      ? winston.format.printf(({ level, message, timestamp }) => `${level}: at ${timestamp} - ${message}`)
-      : winston.format.json(),
+    winston.format.json()
   ),
   transports: [
-    new winston.transports.Console({
-      stderrLevels: ['error'],
-    }),
     new winston.transports.File({ filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'warn.log', level: 'warn' })
+    new winston.transports.File({ filename: 'warn.log', level: 'warn' }),
+    new winston.transports.File({ filename: 'server-output.log' })
   ],
 });
+
+if (config.env !== ENodeEnv.PROD) {
+  logger.add(new winston.transports.Console({
+    format: winston.format.combine(
+      enumerateErrorFormat(),
+      winston.format.colorize(),
+      winston.format.splat(),
+      winston.format.simple(),
+      winston.format.printf(({ level, message }) => `${level}: ${message}`)
+    )
+  }));
+}
 
 
 export default logger;
