@@ -1,4 +1,4 @@
-import { Schema, model, Model, ObjectId } from 'mongoose';
+import { Schema, model, Model, ObjectId, FilterQuery } from 'mongoose';
 import bcrypt from 'bcryptjs';
 import { toJSON, paginate } from './plugins';
 import { EGender, EModelNames, EUserRole, IPaginateOption, IUserDocument } from '../types';
@@ -6,7 +6,7 @@ import { EGender, EModelNames, EUserRole, IPaginateOption, IUserDocument } from 
 interface IUserModel extends Model<IUserDocument> {
   // statics
   isEmailTaken?: (email: string, excludeUserId?: ObjectId) => Promise<boolean>;
-  paginate?: (filter: IUserDocument, options: IPaginateOption) => Promise<[any, any]>;
+  paginate?: (filter: FilterQuery<IUserDocument>, options: IPaginateOption) => Promise<[IUserDocument, any]>;
 }
 
 const userSchema: Schema = new Schema(
