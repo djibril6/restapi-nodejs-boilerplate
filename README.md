@@ -1,4 +1,4 @@
-# Node.js boilerplate generator
+# Node.js Rest API boilerplate
 Node.js, express, Typescript and mongoDB project boilerplate
 
 ## Installation with `create-nodejs-boilerplate`

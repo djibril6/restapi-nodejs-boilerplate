@@ -10,8 +10,7 @@ interface IUserModel extends Model<IUserDocument> {
   paginate?: (filter: FilterQuery<IUserDocument>, options: IPaginateOption) => Promise<[IUserDocument, any]>;
 }
 
-interface IUserData extends IUserDocument {password: string}
-const userSchema: Schema<IUserData> = new Schema(
+const userSchema: Schema<IUserDocument> = new Schema(
   {
     firstname: {
       type: String,

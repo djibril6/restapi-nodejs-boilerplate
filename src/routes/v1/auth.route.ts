@@ -2,7 +2,7 @@ import express from 'express';
 import { authValidation } from '../../validations';
 import { auth, validate } from '../../middlewares';
 import { authController } from '../../controllers';
-import { EUserRole } from 'enums/app.enum';
+import { EUserRole } from '../../types';
 
 const router = express.Router();
 

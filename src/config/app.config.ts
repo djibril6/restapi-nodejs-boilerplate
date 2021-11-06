@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import Joi from 'joi';
 import { ENodeEnv } from '../types';
+import mongoose from 'mongoose';
 
 dotenv.config({ path: '.env' });
 
@@ -39,9 +40,7 @@ export default {
       ? envVars.MONGODB_URL
       : envVars.MONGODB_URL_DEV + (envVars.NODE_ENV === ENodeEnv.TEST ? '-test' : ''),
     options: {
-      useCreateIndex: true,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+      autoIndex: true
     },
   },
   jwt: {

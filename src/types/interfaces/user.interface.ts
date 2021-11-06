@@ -29,16 +29,21 @@ export interface IStatus {
   accountClosed: boolean;
 }
 
-export interface IUserDocument extends mongoose.Document,
+export interface IUser extends
   Partial<IFirstname>,
   Partial<ILastname>,
   Partial<IEmail>,
   Partial<IGender>,
   Partial<IRole>,
   Partial<IIsEmailVerified>,
-  Partial<IStatus>
+  Partial<IStatus>,
+  Partial<IPassword>
 {
   registeredWith?: string;
   thirdPartyID?: string;
+}
+
+export interface IUserDocument extends mongoose.Document, IUser
+{
   isPasswordMatch?: (password: string) => Promise<boolean>;
 }
