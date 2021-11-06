@@ -1,4 +1,4 @@
-import { Schema, model, Model, ObjectId, FilterQuery } from 'mongoose';
+import { Schema, model, Model, FilterQuery } from 'mongoose';
 import bcrypt from 'bcryptjs';
 import { toJSON, paginate } from './plugins';
 import { EGender, EModelNames, EUserRole, IPaginateOption, IUserDocument } from '../types';

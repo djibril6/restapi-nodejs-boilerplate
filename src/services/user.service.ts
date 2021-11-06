@@ -5,14 +5,6 @@ import { IUserDocument, IPaginateOption } from '../types';
 import { ApiError } from '../utils';
 
 
-const createUser = async (userBody: IUserDocument) => {
-  if (userBody.email && await User.isEmailTaken(userBody.email)) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
-  }
-  return User.create(userBody);
-};
-
-
 const getUsers = async (filter: FilterQuery<IUserDocument>, options: IPaginateOption) => {
   const users = await User.paginate(filter, options);
   return users;
@@ -26,12 +18,12 @@ const getOneUser = async (filter: FilterQuery<IUserDocument>) => {
   return await User.findOne(filter);
 };
 
-const updateUserById = async (userId: string, updateBody: IUserDocument) => {
+const updateUserById = async (userId: string, updateBody: FilterQuery<IUserDocument>) => {
   const user = await getUserById(userId);
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
   }
-  if (updateBody.email && (await User.isEmailTaken(updateBody.email, userId))) {
+  if (updateBody.email && (await User.isEmailTaken(updateBody.email.toString(), userId))) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
   }
   Object.assign(user, updateBody);
@@ -54,7 +46,6 @@ const deleteUserById = async (userId: string) => {
 };
 
 export default {
-  createUser,
   getUserById,
   updateUserById,
   deleteUserById,

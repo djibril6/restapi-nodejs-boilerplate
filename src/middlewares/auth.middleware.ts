@@ -5,7 +5,7 @@ import { tokenService, userService } from '../services';
 import { EUserRole, ETokenType } from '../types';
 
 /**
- * Authentication and authautization
+ * Authentication and authorization
  */
 export default async (req: Request, ...requiredRoles: EUserRole[]) => {
   try {

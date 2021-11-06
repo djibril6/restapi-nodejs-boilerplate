@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 import moment, { Moment } from 'moment';
 import httpStatus from 'http-status';
-import { ObjectId } from 'mongoose';
 import { config } from '../config';
 import { Token } from '../models';
 import { ApiError } from '../utils';
@@ -9,7 +8,7 @@ import { ETokenType, ITokenDocument } from '../types';
 import { userService } from '.';
 
 
-const generateToken = (userId: ObjectId, expires: Moment, type: ETokenType): string => {
+const generateToken = (userId: string, expires: Moment, type: ETokenType): string => {
   const payload = {
     sub: userId,
     iat: moment().unix(),
@@ -19,7 +18,7 @@ const generateToken = (userId: ObjectId, expires: Moment, type: ETokenType): str
   return jwt.sign(payload, config.jwt.secret);
 };
 
-const saveToken = async (token: string, userId: ObjectId, expires: Moment, type: ETokenType) => {
+const saveToken = async (token: string, userId: string, expires: Moment, type: ETokenType) => {
   const tokenDoc = await Token.create({
     token,
     user: userId,
@@ -49,7 +48,7 @@ const verifyToken = async (token: string, type: ETokenType) => {
 /**
  * Generate access and refresh tokens
  */
-const generateAuthTokens = async (userId: ObjectId) => {
+const generateAuthTokens = async (userId: string) => {
   const accessTokenExpires = moment().add(config.jwt.accessExpirationMinutes, 'minutes');
   const accessToken = generateToken(userId, accessTokenExpires, ETokenType.ACCESS);
 
@@ -80,7 +79,7 @@ const generateResetPasswordToken = async (email: string) => {
   return resetPasswordToken;
 };
 
-const generateVerifyEmailToken = async (userId: ObjectId) => {
+const generateVerifyEmailToken = async (userId: string) => {
   const expires = moment().add(config.jwt.verifyEmailExpirationMinutes, 'minutes');
   const verifyEmailToken = generateToken(userId, expires, ETokenType.VERIFY_EMAIL);
   await saveToken(verifyEmailToken, userId, expires, ETokenType.VERIFY_EMAIL);
