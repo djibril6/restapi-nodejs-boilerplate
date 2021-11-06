@@ -2,7 +2,7 @@ import { EGender, EUserRole } from '../types';
 import Joi from 'joi';
 import { validation } from '.';
 
-const createUser = {
+const register = {
   body: Joi.object().keys({
     firstname: Joi.string().required(),
     lastname: Joi.string().required(),
@@ -56,7 +56,7 @@ const verifyEmail = {
 };
 
 export default {
-  createUser,
+  register,
   login,
   logout,
   refreshTokens,

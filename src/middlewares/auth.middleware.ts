@@ -1,13 +1,11 @@
-import { Request } from 'express';
-import httpStatus from 'http-status';
-import { ApiError } from '../utils';
+import { NextFunction, Request, Response } from 'express';
 import { tokenService, userService } from '../services';
 import { EUserRole, ETokenType } from '../types';
 
 /**
  * Authentication and authorization
  */
-export default async (req: Request, ...requiredRoles: EUserRole[]) => {
+export default (...requiredRoles: EUserRole[]) => async (req: Request, res: Response, next: NextFunction) => {
   try {
     if (!req.headers.authorization) {
       throw new Error('⛔ Please authenticate first!');
@@ -18,8 +16,8 @@ export default async (req: Request, ...requiredRoles: EUserRole[]) => {
     if (!user || !requiredRoles.includes(user.role)) {
       throw new Error('⛔ You don\'t have access to this ressource!');
     }
-    return user;
+    next();
   } catch (error) {
-    throw new ApiError(httpStatus.UNAUTHORIZED, error.message);
+    next(error);
   }
 };
