@@ -30,13 +30,13 @@ export interface IStatus {
 }
 
 export interface IUserDocument extends mongoose.Document,
-    Partial<IFirstname>,
-    Partial<ILastname>,
-    Partial<IEmail>,
-    Partial<IGender>,
-    Partial<IRole>,
-    Partial<IIsEmailVerified>,
-    Partial<IStatus>
+  Partial<IFirstname>,
+  Partial<ILastname>,
+  Partial<IEmail>,
+  Partial<IGender>,
+  Partial<IRole>,
+  Partial<IIsEmailVerified>,
+  Partial<IStatus>
 {
   registeredWith?: string;
   thirdPartyID?: string;

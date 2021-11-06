@@ -6,6 +6,7 @@ export enum ENodeEnv {
 
 export enum EModelNames {
   USER = 'User',
+  TOKEN = 'Token'
 }
 
 export enum EUserRole {

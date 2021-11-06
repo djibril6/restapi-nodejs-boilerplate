@@ -9,7 +9,8 @@ interface IUserModel extends Model<IUserDocument> {
   paginate?: (filter: FilterQuery<IUserDocument>, options: IPaginateOption) => Promise<[IUserDocument, any]>;
 }
 
-const userSchema: Schema = new Schema(
+interface IUserData extends IUserDocument {password: string}
+const userSchema: Schema<IUserData> = new Schema(
   {
     firstname: {
       type: String,
@@ -55,7 +56,7 @@ const userSchema: Schema = new Schema(
   }
 );
 
-// add plugin that converts mongoose to json
+// Plugin that converts mongoose to json
 userSchema.plugin(toJSON);
 userSchema.plugin(paginate);
 
@@ -91,9 +92,6 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-/**
- * @typedef User
- */
 const User = model<IUserDocument, IUserModel>(EModelNames.USER, userSchema);
 
 export default User;

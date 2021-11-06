@@ -53,7 +53,7 @@ const deleteUserById = async (userId: ObjectId) => {
   return user;
 };
 
-const userService = {
+export default {
   createUser,
   getUserById,
   updateUserById,
@@ -61,5 +61,3 @@ const userService = {
   getOneUser,
   getUsers
 };
-
-export default userService;

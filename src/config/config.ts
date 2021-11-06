@@ -40,13 +40,13 @@ const config = {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     },
-    jwt: {
-      secret: envVars.TOKEN_SECRET,
-      accessExpirationMinutes: envVars.TOKEN_ACCESS_EXPIRATION_MINUTES,
-      refreshExpirationDays: envVars.TOKEN_REFRESH_EXPIRATION_DAYS,
-      resetPasswordExpirationMinutes: envVars.TOKEN_RESET_PASSWORD_EXPIRATION_MINUTES,
-      verifyEmailExpirationMinutes: envVars.TOKEN_VERIFY_EMAIL_EXPIRATION_MINUTES,
-    },
+  },
+  jwt: {
+    secret: envVars.TOKEN_SECRET,
+    accessExpirationMinutes: envVars.TOKEN_ACCESS_EXPIRATION_MINUTES,
+    refreshExpirationDays: envVars.TOKEN_REFRESH_EXPIRATION_DAYS,
+    resetPasswordExpirationMinutes: envVars.TOKEN_RESET_PASSWORD_EXPIRATION_MINUTES,
+    verifyEmailExpirationMinutes: envVars.TOKEN_VERIFY_EMAIL_EXPIRATION_MINUTES,
   },
 };
 export default config;

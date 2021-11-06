@@ -42,10 +42,10 @@ const forgotPassword = {
   
 const resetPassword = {
   query: Joi.object().keys({
-    token: Joi.string().required(),
+    token: Joi.string().required().description('The generated reset password token getted from forgotPassword request'),
   }),
   body: Joi.object().keys({
-    password: Joi.string().required().custom(validation.password),
+    password: Joi.string().required().custom(validation.password).description('Generated verify email token'),
   }),
 };
   
