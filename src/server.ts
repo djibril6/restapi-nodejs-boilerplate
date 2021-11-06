@@ -8,6 +8,10 @@ import compression from 'compression';
 
 import { config, logger } from './config';
 import { ENodeEnv } from './types';
+import { routeV1 } from './routes';
+import { ApiError } from './utils';
+import httpStatus from 'http-status';
+import { errorConverter, errorHandler } from './middlewares';
 
 const startServer  = async (): Promise<Server> => {
   
@@ -35,11 +39,19 @@ const startServer  = async (): Promise<Server> => {
   app.use(cors());
   app.options('*', cors());
 
-  
+  // routes
+  app.use('/api', routeV1);
 
-  /**
-     * TODO -- send back a 404 error for any unknown api request
-     */
+  // send back a 404 error for any unknown api request
+  app.use((req, res, next) => {
+    next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));
+  });
+
+  // convert any error to an ApiError
+  app.use(errorConverter);
+
+  // handle error
+  app.use(errorHandler);
 
   const server = await app.listen(config.port, () => {
     logger.info(`🚀 Server listening to port ${config.port}`);
