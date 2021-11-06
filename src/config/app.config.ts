@@ -19,6 +19,8 @@ const envVarsSchema = Joi.object()
     TOKEN_VERIFY_EMAIL_EXPIRATION_MINUTES: Joi.number()
       .default(10)
       .description('minutes after which verify email token expires'),
+    HOST: Joi.string().required().description('Application base url or hostname'),
+    SENDGRID_API_KEY: Joi.string().required().description('Sendgrid api key required'),
   })
   .unknown();
 
@@ -31,6 +33,7 @@ if (error) {
 export default {
   env: envVars.NODE_ENV,
   port: envVars.PORT,
+  host: envVars.HOST,
   mongoose: {
     url: envVars.NODE_ENV === ENodeEnv.PROD 
       ? envVars.MONGODB_URL
@@ -48,4 +51,7 @@ export default {
     resetPasswordExpirationMinutes: envVars.TOKEN_RESET_PASSWORD_EXPIRATION_MINUTES,
     verifyEmailExpirationMinutes: envVars.TOKEN_VERIFY_EMAIL_EXPIRATION_MINUTES,
   },
+  email: {
+    sendgridAPIKey: envVars.SENDGRID_API_KEY
+  }
 };

@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/djibril6/create-rest-nodejs-boilerplate#readme",
   "dependencies": {
+    "@sendgrid/mail": "^7.6.0",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
