@@ -1,11 +1,11 @@
 export interface IPaginateOption {
-    sortBy?: string;
-    populate?: IPaginatePopulate[];
-    limit?: number;
-    page?: number;
+  sortBy?: string;
+  populate?: IPaginatePopulate[];
+  limit?: number;
+  page?: number;
 }
 
 interface IPaginatePopulate {
-    path: string;
-    match?: any;
+  path: string;
+  match?: any;
 }

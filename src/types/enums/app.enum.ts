@@ -1,16 +1,16 @@
 export enum ENodeEnv {
-    DEV = "development",
-    PROD = "production",
-    TEST = "test"
+  DEV = "development",
+  PROD = "production",
+  TEST = "test"
 }
 
 export enum EModelNames {
-    USER = 'User',
+  USER = 'User',
 }
 
 export enum EUserRole {
-    USER = 'user',
-    ADMIN = 'admin'
+  USER = 'user',
+  ADMIN = 'admin'
 }
 
 export enum EGender {
@@ -19,8 +19,8 @@ export enum EGender {
 }
 
 export enum ETokenType {
-    ACCESS = 'access',
-    REFRESH = 'refresh',
-    RESET_PASSWORD = 'resetPassword',
-    VERIFY_EMAIL = 'verifyEmail'
+  ACCESS = 'access',
+  REFRESH = 'refresh',
+  RESET_PASSWORD = 'resetPassword',
+  VERIFY_EMAIL = 'verifyEmail'
 } 

@@ -2,7 +2,7 @@ import httpStatus from 'http-status';
 import { config, logger } from '../config';
 import { ApiError } from '../utils';
 import { NextFunction, Request, Response } from 'express';
-import { ENodeEnv } from 'enums/node-env.enum';
+import { ENodeEnv } from 'enums/app.enum';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const errorConverter = (err: any, req: Request, res: Response, next: NextFunction) => {

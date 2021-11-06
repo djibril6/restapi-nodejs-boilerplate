@@ -1,4 +1,4 @@
-import { EGender, EUserRole } from 'enums/app.enum';
+import { EGender, EUserRole } from '../types';
 import Joi from 'joi';
 import { validation } from '.';
 
