@@ -28,7 +28,7 @@ if (error) {
   throw new Error(`Config validation error: ${error.message}`);
 }
 
-const config = {
+export default {
   env: envVars.NODE_ENV,
   port: envVars.PORT,
   mongoose: {
@@ -49,4 +49,3 @@ const config = {
     verifyEmailExpirationMinutes: envVars.TOKEN_VERIFY_EMAIL_EXPIRATION_MINUTES,
   },
 };
-export default config;

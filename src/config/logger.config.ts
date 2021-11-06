@@ -1,6 +1,6 @@
 import winston from 'winston';
 import { ENodeEnv } from '../types';
-import { config } from './';
+import { config } from '.';
 
 const enumerateErrorFormat = winston.format((info) => {
   if (info instanceof Error) {
