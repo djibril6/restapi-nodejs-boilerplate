@@ -1,5 +1,5 @@
 import httpStatus from 'http-status';
-import { FilterQuery, ObjectId } from 'mongoose';
+import { FilterQuery } from 'mongoose';
 import { User } from '../models';
 import { IUserDocument, IPaginateOption } from '../types';
 import { ApiError } from '../utils';
@@ -18,7 +18,7 @@ const getUsers = async (filter: FilterQuery<IUserDocument>, options: IPaginateOp
   return users;
 };
 
-const getUserById = async (id: ObjectId) => {
+const getUserById = async (id: string) => {
   return await User.findById(id);
 };
 
@@ -26,7 +26,7 @@ const getOneUser = async (filter: FilterQuery<IUserDocument>) => {
   return await User.findOne(filter);
 };
 
-const updateUserById = async (userId: ObjectId, updateBody: IUserDocument) => {
+const updateUserById = async (userId: string, updateBody: IUserDocument) => {
   const user = await getUserById(userId);
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
@@ -44,7 +44,7 @@ const updateUserById = async (userId: ObjectId, updateBody: IUserDocument) => {
  * @param {ObjectId} userId
  * @returns {Promise<User>}
  */
-const deleteUserById = async (userId: ObjectId) => {
+const deleteUserById = async (userId: string) => {
   const user = await getUserById(userId);
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');

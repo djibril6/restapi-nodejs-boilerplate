@@ -5,7 +5,7 @@ import { EGender, EModelNames, EUserRole, IPaginateOption, IUserDocument } from 
 
 interface IUserModel extends Model<IUserDocument> {
   // statics
-  isEmailTaken?: (email: string, excludeUserId?: ObjectId) => Promise<boolean>;
+  isEmailTaken?: (email: string, excludeUserId?: string) => Promise<boolean>;
   paginate?: (filter: FilterQuery<IUserDocument>, options: IPaginateOption) => Promise<[IUserDocument, any]>;
 }
 
@@ -66,7 +66,7 @@ userSchema.plugin(paginate);
  * @param {ObjectId} [excludeUserId] - The id of the user to be excluded
  * @returns {Promise<boolean>}
  */
-userSchema.statics.isEmailTaken = async function (email: string, excludeUserId: ObjectId) {
+userSchema.statics.isEmailTaken = async function (email: string, excludeUserId: string) {
   const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
   return !!user;
 };

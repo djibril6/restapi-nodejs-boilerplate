@@ -1,2 +1,3 @@
-export { errorConverter, errorHandler } from './error';
-export { default as validate } from './validate';
+export { errorConverter, errorHandler } from './error.middleware';
+export { default as validate } from './validate.middleware';
+export { default as auth } from './auth.middleware';
