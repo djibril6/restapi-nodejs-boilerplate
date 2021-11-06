@@ -40,7 +40,7 @@ const startServer  = async (): Promise<Server> => {
   app.options('*', cors());
 
   // routes
-  app.use('/api', routeV1);
+  app.use('/v1', routeV1);
 
   // send back a 404 error for any unknown api request
   app.use((req, res, next) => {

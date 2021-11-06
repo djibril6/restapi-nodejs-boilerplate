@@ -6,6 +6,7 @@ import { EGender, EModelNames, EUserRole, IPaginateOption, IUserDocument } from 
 interface IUserModel extends Model<IUserDocument> {
   // statics
   isEmailTaken?: (email: string, excludeUserId?: string) => Promise<boolean>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   paginate?: (filter: FilterQuery<IUserDocument>, options: IPaginateOption) => Promise<[IUserDocument, any]>;
 }
 
@@ -62,9 +63,6 @@ userSchema.plugin(paginate);
 
 /**
  * Check if email is taken
- * @param {string} email - The user's email
- * @param {ObjectId} [excludeUserId] - The id of the user to be excluded
- * @returns {Promise<boolean>}
  */
 userSchema.statics.isEmailTaken = async function (email: string, excludeUserId: string) {
   const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
@@ -73,8 +71,6 @@ userSchema.statics.isEmailTaken = async function (email: string, excludeUserId: 
 
 /**
  * Check if password matches the user's password
- * @param {string} password
- * @returns {Promise<boolean>}
  */
 userSchema.methods.isPasswordMatch = async function (password: string) {
   // eslint-disable-next-line @typescript-eslint/no-this-alias
