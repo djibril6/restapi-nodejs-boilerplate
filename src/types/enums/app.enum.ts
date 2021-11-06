@@ -17,3 +17,10 @@ export enum EGender {
   MALE = 'male',
   FEMALE = 'female'
 }
+
+export enum ETokenType {
+    ACCESS = 'access',
+    REFRESH = 'refresh',
+    RESET_PASSWORD = 'resetPassword',
+    VERIFY_EMAIL = 'verifyEmail'
+} 
