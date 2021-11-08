@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-rest-boilerplate",
+  "name": "restapi-nodejs-boilerplate",
   "version": "1.0.0",
-  "description": "Modular Node.js with typescript boilerplate",
+  "description": "Modular Node.js RestAPI with typescript boilerplate",
   "main": "src/index.ts",
   "scripts": {
     "start": "pm2 start ecosystem.config.json --no-daemon",
