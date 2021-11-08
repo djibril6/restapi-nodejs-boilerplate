@@ -38,10 +38,7 @@ export interface IUser extends
   Partial<IIsEmailVerified>,
   Partial<IStatus>,
   Partial<IPassword>
-{
-  registeredWith?: string;
-  thirdPartyID?: string;
-}
+{}
 
 export interface IUserDocument extends mongoose.Document, IUser
 {
