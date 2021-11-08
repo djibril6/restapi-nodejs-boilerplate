@@ -1,10 +1,13 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import { authService, tokenService, emailService } from '../services';
+import { ETokenType, EUserRole, IUser } from '../types';
 import { catchReq } from '../utils';
 
 
 const register = catchReq(async (req: Request, res: Response) => {
+  const data: IUser = req.body;
+  data.role = EUserRole.USER;
   const user = await authService.register(req.body);
   const tokens = await tokenService.generateAuthTokens(user.id);
   res.status(httpStatus.CREATED).send({ user, tokens });
@@ -34,7 +37,8 @@ const forgotPassword = catchReq(async (req, res) => {
 });
 
 const resetPassword = catchReq(async (req, res) => {
-  await authService.resetPassword(req.query.token, req.body.password);
+  const token = await tokenService.verifyToken(req.query.token, ETokenType.RESET_PASSWORD);
+  await authService.resetPassword(token.user.toString(), req.body.password);
   res.status(httpStatus.NO_CONTENT).send();
 });
 

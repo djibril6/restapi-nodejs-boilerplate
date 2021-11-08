@@ -1,8 +1,15 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
-import { userService } from '../services';
+import { IUser } from '../types';
+import { authService, userService } from '../services';
 import { ApiError, catchReq, pick } from '../utils';
 
+const createUser = catchReq(async (req: Request, res: Response) => {
+  const data: IUser = req.body;
+  data.password = 'password1';
+  const user = await authService.register(data);
+  res.status(httpStatus.CREATED).send(user);
+});
 const getUsers = catchReq(async (req: Request, res: Response) => {
   const filter = pick(req.query, ['role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
@@ -29,6 +36,7 @@ const deleteUser = catchReq(async (req: Request, res: Response) => {
 });
 
 export default {
+  createUser,
   getUsers,
   getOneUser,
   updateUser,

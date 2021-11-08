@@ -4,7 +4,7 @@ import httpStatus from 'http-status';
 import { config } from '../config';
 import { Token } from '../models';
 import { ApiError } from '../utils';
-import { ETokenType, ITokenDocument } from '../types';
+import { ETokenType, ITokenDocument, ITokenPayload } from '../types';
 import { userService } from '.';
 
 
@@ -30,17 +30,27 @@ const saveToken = async (token: string, userId: string, expires: Moment, type: E
 
 
 const verifyToken = async (token: string, type: ETokenType) => {
-  let tokenDoc: ITokenDocument;
-  const payload = jwt.verify(token, config.jwt.secret);
+  let tokenDoc: ITokenDocument = {};
+  let payload: string | ITokenPayload;
+  try {
+    payload = jwt.verify(token, config.jwt.secret);
+  } catch (error) {
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect token sended!');
+  }
+  if (typeof(payload) !== 'string' && payload.type !== type) {
+    throw new ApiError(httpStatus.FORBIDDEN, 'Wrong token sended!');
+  }
   if (type === ETokenType.ACCESS) {
-    tokenDoc.user = payload.sub;
-    tokenDoc.token = token;
-    tokenDoc.type = type;
+    Object.assign(tokenDoc, {
+      user: payload.sub,
+      token: token,
+      type : type,
+    });
   } else {
     tokenDoc = await Token.findOne({ token, type, user: payload.sub});
   }
   if (!tokenDoc) {
-    throw new Error('Token not found');
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'Token not found');
   }
   return tokenDoc;
 };

@@ -2,6 +2,20 @@ import { EGender, EUserRole } from '../types';
 import Joi from 'joi';
 import { validation } from '.';
 
+
+const createUser = {
+  body: Joi.object().keys({
+    firstname: Joi.string().required(),
+    lastname: Joi.string().required(),
+    email: Joi.string().required().email(),
+    password: Joi.forbidden(),
+    role: Joi.string().required().valid(EUserRole.ADMIN, EUserRole.USER),
+    gender: Joi.string().valid(EGender.FEMALE, EGender.MALE),
+    isEmailVerified: Joi.forbidden(),
+    accountClosed: Joi.forbidden()
+  }),
+};
+
 const getUsers = {
   query: Joi.object().keys({
     role: Joi.string().valid(EUserRole.ADMIN, EUserRole.USER),
@@ -41,5 +55,6 @@ export default {
   getUsers,
   getOneUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  createUser
 };

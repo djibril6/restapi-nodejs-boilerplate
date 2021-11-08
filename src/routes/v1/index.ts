@@ -11,7 +11,7 @@ routes.use('/auth', authRoute);
 routes.use('/users', userRoute);
 
 if (config.env === ENodeEnv.DEV) {
-  routes.use('/doc', docRoute);
+  routes.use('/docs', docRoute);
 }
 
 export default routes;

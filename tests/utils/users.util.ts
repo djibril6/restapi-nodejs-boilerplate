@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import faker from 'faker';
-import { EGender, EUserRole } from '../../src/types';
+import { EGender, EUserRole, IUser } from '../../src/types';
 import { User } from '../../src/models';
 
 const password = 'password1';
@@ -17,6 +17,7 @@ const userOne = {
   role: EUserRole.USER,
   gender: EGender.MALE,
   isEmailVerified: false,
+  accountClosed: false,
 };
 
 const userTwo = {
@@ -28,6 +29,7 @@ const userTwo = {
   role: EUserRole.USER,
   gender: EGender.FEMALE,
   isEmailVerified: false,
+  accountClosed: false,
 };
 
 const admin = {
@@ -39,10 +41,11 @@ const admin = {
   role: EUserRole.ADMIN,
   gender: EGender.MALE,
   isEmailVerified: false,
+  accountClosed: false,
 };
 
-const insertUsers = async (users) => {
-  await User.insertMany(users.map((user) => ({ ...user, password: hashedPassword })));
+const insertUsers = async (users: IUser[]) => {
+  await User.insertMany(users.map((user: IUser) => ({ ...user, password: hashedPassword })));
 };
 
 export default {

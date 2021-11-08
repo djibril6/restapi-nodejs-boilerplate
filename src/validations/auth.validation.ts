@@ -1,4 +1,4 @@
-import { EGender, EUserRole } from '../types';
+import { EGender } from '../types';
 import Joi from 'joi';
 import { validation } from '.';
 
@@ -8,8 +8,8 @@ const register = {
     lastname: Joi.string().required(),
     email: Joi.string().required().email(),
     password: Joi.string().required().custom(validation.password),
-    role: Joi.string().required().valid(EUserRole.ADMIN, EUserRole.USER),
     gender: Joi.string().valid(EGender.FEMALE, EGender.MALE),
+    role: Joi.forbidden(),
     isEmailVerified: Joi.forbidden(),
     accountClosed: Joi.forbidden()
   }),

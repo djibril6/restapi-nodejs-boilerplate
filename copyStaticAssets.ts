@@ -1,3 +1,12 @@
-import * as shell from "shelljs";
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-console */
+import ncp from 'ncp';
+import { promisify } from 'util';
 
-shell.ShellString("ls ", "src/public/js/lib", "dist/public/js/");
+const copy = promisify(ncp);
+
+async function copyFiles(source, destination) {
+  return copy(source, destination);
+};
+
+copyFiles('.env','./dist/.env');

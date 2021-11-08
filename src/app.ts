@@ -1,12 +1,11 @@
 import express from 'express';
 import cors from 'cors';
-import { Server } from 'http';
 import helmet from 'helmet';
 import xss from 'xss-clean';
 import mongoSanitize from 'express-mongo-sanitize';
 import compression from 'compression';
 
-import { config, logger } from './config';
+import { config } from './config';
 import { ENodeEnv } from './types';
 import { routeV1 } from './routes';
 import { ApiError } from './utils';

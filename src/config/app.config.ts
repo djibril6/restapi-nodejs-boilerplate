@@ -1,7 +1,6 @@
 import dotenv from 'dotenv';
 import Joi from 'joi';
 import { ENodeEnv } from '../types';
-import mongoose from 'mongoose';
 
 dotenv.config({ path: '.env' });
 

@@ -2,10 +2,10 @@ import httpStatus from 'http-status';
 import { tokenService, userService } from './';
 import { Token, User } from '../models';
 import { ApiError } from '../utils';
-import { ETokenType, IUserDocument } from '../types';
+import { ETokenType, IUser } from '../types';
 
 
-const register = async (user: IUserDocument) => {
+const register = async (user: IUser) => {
   if (await User.isEmailTaken(user.email)) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
   }
