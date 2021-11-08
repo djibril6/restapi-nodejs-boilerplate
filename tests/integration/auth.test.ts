@@ -10,8 +10,7 @@ import { EGender, ETokenType, EUserRole, IUser } from '../../src/types';
 import { setupTestDB, tokenUtil, userUtil } from '../utils';
 import { tokenService } from '../../src/services';
 import { ApiError } from '../../src/utils';
-import { config, logger } from '../../src/config';
-import tokenUtils from '../utils/token.utils';
+import { config } from '../../src/config';
 import { auth } from '../../src/middlewares';
 
 setupTestDB();
