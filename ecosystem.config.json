@@ -1,8 +1,8 @@
 {
   "apps": [
     {
-      "name": "awsome-nodejs-bolerplate",
-      "script": "built/src/index.js",
+      "name": "restapi-nodejs-bolerplate",
+      "script": "dist/src/index.js",
       "instances": 1,
       "autorestart": true,
       "watch": false,

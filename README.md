@@ -1,4 +1,5 @@
 # Node.js Rest API boilerplate
+[![Coverage Status](https://coveralls.io/repos/github/djibril6/restapi-nodejs-boilerplate/badge.svg?branch=main)](https://coveralls.io/github/djibril6/restapi-nodejs-boilerplate?branch=main)
 Node.js, express, Typescript and mongoDB project boilerplate
 
 ## Installation with `create-nodejs-boilerplate`
@@ -25,8 +26,6 @@ Install the dependencies for the project:
 ```bash
 
 npm install
-# Or
-yarn install
 
 ```
 
@@ -70,10 +69,13 @@ src\
  |--validations\    # All data validation logics
  |--server.ts       # Express app
  |--index.ts        # App entry point
+test\
+ |--integration\    # integration test files
+ |--utils\          # utilty functions for test
 ```
 ## API Documentation
 
-In development mode and go to `http://localhost:{PORT}/v1/doc` in your browser. 
+In development mode and go to `http://localhost:{PORT}/v1/docs` in your browser. 
 
 ## Authentication
 
@@ -96,4 +98,5 @@ logger.debug('message'); // level 5
 
 ## Inspirations
 
-- Inspired from the javascript [hagopj13/node-express-boilerplate](https://github.com/hagopj13/node-express-boilerplate) project.
+- Inspired from [hagopj13/node-express-boilerplate](https://github.com/djibril6/restapi-nodejs-boilerplate) project.
+- The javascript [hagopj13/node-express-boilerplate](https://github.com/hagopj13/node-express-boilerplate) project.
