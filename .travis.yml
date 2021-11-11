@@ -12,9 +12,9 @@ env:
     - PORT=3000
     - MONGODB_URL=mongodb://localhost:27017/boilerplate
     - MONGODB_URL_DEV=mongodb://localhost:27017/boilerplate
-    - JWT_SECRET=thisisasamplesecret
-    - JWT_ACCESS_EXPIRATION_MINUTES=30
-    - JWT_REFRESH_EXPIRATION_DAYS=30
+    - TOKEN_SECRET=thisisasamplesecret
+    - TOKEN_ACCESS_EXPIRATION_MINUTES=30
+    - TOKEN_REFRESH_EXPIRATION_DAYS=30
     - SENDGRID_API_KEY=blabla
 script:
   - yarn lint
