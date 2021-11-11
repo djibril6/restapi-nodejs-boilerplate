@@ -1,5 +1,6 @@
 # Node.js Rest API boilerplate
 [![Coverage Status](https://coveralls.io/repos/github/djibril6/restapi-nodejs-boilerplate/badge.svg?branch=main)](https://coveralls.io/github/djibril6/restapi-nodejs-boilerplate?branch=main)
+
 Node.js, express, Typescript and mongoDB project boilerplate
 
 ## Installation with `create-nodejs-boilerplate`

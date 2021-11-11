@@ -19,7 +19,7 @@ const envVarsSchema = Joi.object()
     TOKEN_VERIFY_EMAIL_EXPIRATION_MINUTES: Joi.number()
       .default(10)
       .description('minutes after which verify email token expires'),
-    HOST: Joi.string().required().description('Application base url or hostname'),
+    HOST: Joi.string().default('http://127.0.0.1').description('Application base url or hostname'),
     SENDGRID_API_KEY: Joi.string().required().description('Sendgrid api key required'),
   })
   .unknown();
