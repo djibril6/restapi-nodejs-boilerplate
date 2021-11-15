@@ -66,6 +66,7 @@ src\
  |--models\         # All Mongoose models
  |--routes\         # RestFull Api Routes 
  |--services\       # All database query and services(Business logic)
+ |--types\          # All TypeScript shared interfaces and enums
  |--utils\          # Utility classes and functions
  |--validations\    # All data validation logics
  |--server.ts       # Express app
